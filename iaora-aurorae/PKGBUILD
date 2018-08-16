@@ -1,0 +1,31 @@
+# Maintainer: mrmaire <maire.nunez at gmail dot com>
+
+pkgname=iaora-aurorae
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="The old Mandriva's IaOra KDE window decoration ported as an Aurorae theme, derived from the Plastik decoration. It's not an SVG Aurorae theme, but one in QML and C++."
+arch=('any')
+url="https://store.kde.org/p/1224913/"
+license=('GPLv3')
+depends=('plasma-workspace' 'extra-cmake-modules')
+makedepends=('cmake')
+source=("https://dl.opendesktop.org/api/files/downloadfile/id/1521910945/s/9f4f5a15a638ba52575a89754cc44fe6/t/1523238056/u/369823/iaora-aurorae-0.1.0.tar.bz2")
+md5sums=('e7bbbcdcd31d8554dcdadcaf3ed2618a')
+
+build() {
+  cd $pkgname
+  mkdir -p build
+  cd build
+  
+  cmake .. -DCMAKE_BUILD_TYPE=Release \
+           -DCMAKE_INSTALL_PREFIX=/usr
+   
+  make
+}
+
+package() {
+  cd $pkgname/build
+
+  make DESTDIR="$pkgdir/" install
+}
+

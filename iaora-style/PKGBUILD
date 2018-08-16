@@ -1,0 +1,30 @@
+# Maintainer: mrmaire <maire.nunez at gmail dot com>
+
+pkgname=iaora-style
+pkgver=0.3.6
+pkgrel=1
+pkgdesc="The original Mandriva's IaOra widget style ported to Qt5 (without KDE dependencies). It includes the original color schemes for KDE (now Plasma) desktop."
+arch=('any')
+url="https://store.kde.org/p/1183616/"
+license=('GPLv3')
+depends=('plasma-workspace')
+makedepends=('cmake')
+source=("https://store.kde.org/p/1183616/startdownload?file_id=1523006493&file_name=iaora-style-0.3.6.tar.gz&file_type=application/x-gzip&file_size=37585&url=https%3A%2F%2Fdl.opendesktop.org%2Fapi%2Ffiles%2Fdownload%2Fid%2F1523006493%2Fs%2F798e8e5d1ff019b89bd07e080279108e%2Ft%2F1534461544%2Fu%2F3453%2Fiaora-style-0.3.6.tar.gz")
+md5sums=('SKIP')
+
+build() {
+  cd $pkgname-$pkgver
+  mkdir -p build
+  cd build
+  
+  cmake .. -DCMAKE_BUILD_TYPE=Release \
+           -DCMAKE_INSTALL_PREFIX=/usr
+   
+  make
+}
+
+package() {
+  cd $pkgname-$pkgver/build
+
+  make DESTDIR="$pkgdir/" install
+}

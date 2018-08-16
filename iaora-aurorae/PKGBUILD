@@ -10,7 +10,7 @@ license=('GPLv3')
 depends=('plasma-workspace' 'extra-cmake-modules')
 makedepends=('cmake')
 source=("https://dl.opendesktop.org/api/files/downloadfile/id/1521910945/s/9f4f5a15a638ba52575a89754cc44fe6/t/1523238056/u/369823/iaora-aurorae-0.1.0.tar.bz2")
-md5sums=('e7bbbcdcd31d8554dcdadcaf3ed2618a')
+md5sums=('SKIP')
 
 build() {
   cd $pkgname
